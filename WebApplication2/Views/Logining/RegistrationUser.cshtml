@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Регистрация";
+    @model WebApplication2.Models.RegistrationModel;
+}
+
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100 p-t-50 p-b-90">
+            <form class="login100-form validate-form flex-sb flex-w" asp-antiforgery="true" method="post">
+                <div class="validation" asp-validation-summary="All" />
+                <span class="login100-form-title p-b-51">
+                    Регистрация
+                </span>
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Username is required">
+                    <input class="input100" type="text" asp-for="Login" name="Login" placeholder="Username" required>
+                    <span style="color:red;  justify-content: center; display: flex;" asp-validation-for="Login"></span>
+                </div>
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Email is required">
+                    <input class="input100" type="email" asp-for="Email" name="Email" placeholder="Email" required>
+                    <span style="color:red;  justify-content: center; display: flex;" asp-validation-for="Email"></span>
+                </div>
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Password is required">
+                    <input class="input100" type="password" asp-for="Password" name="Password" placeholder="Password" required>
+                    <span style="color:red;  justify-content: center; display: flex;" asp-validation-for="Password"></span>
+                </div>
+
+                <div class="container-login100-form-btn m-t-17">
+                    <a class="login100-form-btn" style="text-decoration:none;">
+                        <button type="submit">
+                            Зарегестрироваться
+                        </button>
+                    </a>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
