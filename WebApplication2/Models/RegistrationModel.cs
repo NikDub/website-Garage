@@ -10,7 +10,7 @@ namespace WebApplication2.Models
     {
         [Required(ErrorMessage = "Не заполнено поле логин")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Длина логина 3-50 символов")]
-        [RegularExpression(@"[A-Za-z0-9._-]{3,16}", ErrorMessage = "Некорректный адрес")]
+        [RegularExpression(@"[A-Za-z0-9._-]{3,16}", ErrorMessage = "Некорректный логин")]
         public string Login { get; set; }
 
          

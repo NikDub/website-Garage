@@ -61,6 +61,18 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public async Task<IActionResult> RegistrationUser(RegistrationModel model)
         {
+            User UserLogin = await _context.Users.FirstOrDefaultAsync(u => u.Login == model.Login);
+            if (UserLogin != null)
+            {
+                ModelState.AddModelError("Login","Такой логин уже существует");
+            }
+
+            User userEmail = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
+            if (userEmail != null)
+            {
+                ModelState.AddModelError("Email", "Такая почта уже загестрирована");
+            }
+
             if (ModelState.IsValid)
             {
                 User UserReg = new User { Email = model.Email, Login = model.Login, Password = model.Password, RoleId = 2 };

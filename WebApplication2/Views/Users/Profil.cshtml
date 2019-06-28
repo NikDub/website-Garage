@@ -4,4 +4,24 @@
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
-<p>Профиль пользователя @TempData["UserName"]</p>
+
+<table>
+    <tr>
+        <td style="padding: 0 20px 0">
+            <div class="profil-bg icon_bg_size">
+                <p class="profil-head-text">@TempData["UserName"]</p>
+                <div style="background-image:url(/images/logo_icon.png);" class="profil-img">
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="profil-bg content_bg_size">
+
+
+            </div>
+        </td>
+    </tr>
+</table>
+
+
+
