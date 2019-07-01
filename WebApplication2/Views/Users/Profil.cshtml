@@ -1,27 +1,40 @@
 ﻿@{
     ViewData["Title"] = "Профиль";
+    @model List<WebApplication2.Models.Post>;
 }
 <h2>@ViewData["Title"]</h2>
 <h3>@ViewData["Message"]</h3>
 
+<div class="gtid-profil">
+    <div class="profil-bg">
+        <p class="profil-head-text">@TempData["UserName"]</p>
+        <div style="background-image:url(/images/logo_icon.png);" class="profil-img">
+        </div>
+    </div>
 
-<table>
-    <tr>
-        <td style="padding: 0 20px 0">
-            <div class="profil-bg icon_bg_size">
-                <p class="profil-head-text">@TempData["UserName"]</p>
-                <div style="background-image:url(/images/logo_icon.png);" class="profil-img">
-                </div>
-            </div>
-        </td>
-        <td>
-            <div class="profil-bg content_bg_size">
-
-
-            </div>
-        </td>
-    </tr>
-</table>
-
-
+    <div class="profil-bg">
+        <table class="table table-hover" >
+            <thead>
+                <tr><td>заголовок</td><td>текст</td></tr>
+            </thead>
+            <tbody>
+                @{ foreach (var i in Model)
+                    {
+                        <tr>
+                            <td>@i.Headline</td>
+                            <td>@i.MainText</td>
+                            
+                            <td style="width:10%">
+                                <form asp-antiforgery="true" method="post">
+                                    <input type="hidden" name="Login" value="@i.Headline" />
+                                    <input type="submit" class="btn btn-danger" value="Удалить" />
+                                </form>
+                            </td>
+                        </tr>
+                   }
+                }
+             </tbody>
+        </table>
+    </div>
+</div>
 

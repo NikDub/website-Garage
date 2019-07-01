@@ -1,14 +1,4 @@
-﻿.icon_bg_size {
-    width: 300px;
-    height: 300px;
-}
-
-.content_bg_size {
-    width: 800px;
-    height: 300px;
-}
-
-.profil-bg {
+﻿.profil-bg {
     margin-bottom: 20px;
     padding: 20px 20px 0;
     background-color: #fff;
@@ -76,3 +66,9 @@
     text-align:center;
 }
 
+.gtid-profil{
+    display:grid;
+    grid-template-columns:26% 73%;
+    grid-column-gap: 20px;
+    grid-auto-rows: minmax(300px, auto);
+}

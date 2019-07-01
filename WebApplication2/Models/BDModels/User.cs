@@ -13,5 +13,13 @@ namespace WebApplication2.Models
         public string Password { get; set; }
         public int? RoleId { get; set; }
         public Role Role { get; set; }
+
+        public ICollection<Subscription> Subscriptions { get; set; }
+        public ICollection<Post> Posts { get; set; }
+        public User()
+        {
+            Subscriptions = new List<Subscription>();
+            Posts = new List<Post>();
+        }
     }
 }

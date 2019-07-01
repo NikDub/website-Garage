@@ -7,6 +7,8 @@ namespace WebApplication2
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Subscription> Subscriptions { get; set; }
 
         public DataBaseContext(DbContextOptions<DataBaseContext> options)
            : base(options)

@@ -11,10 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\BDModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="Views\Users\Profil.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>

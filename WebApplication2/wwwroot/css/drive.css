@@ -303,9 +303,7 @@ main {
 .g-branded .footer a:hover {
 	color: #fff;
 }
-.c-block__more,.c-top-sitesearch,.c-top__intro,.c-top__login,.c-top__side,.c-top__user,.footer__links,.l-alt,.l-intro,.l-nav,.qqq_h16rCcr_MoIE,.l-top,form {
-	display: none;
-}
+
 .footer {
 	width: auto;
 }
