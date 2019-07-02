@@ -15,7 +15,8 @@
     <div class="profil-bg">
         <table class="table table-hover" >
             <thead>
-                <tr><td>заголовок</td><td>текст</td></tr>
+                <tr><td>Заголовок</td><td>Текст Поста</td> 
+                <td><div class="btn-block btn-danger btn" style="background:green; border-color:darkgreen"><a style="text-decoration:none;color:white;" href="/users/addpost">Добавить</a></div></td></tr>
             </thead>
             <tbody>
                 @{ foreach (var i in Model)
@@ -26,8 +27,8 @@
                             
                             <td style="width:10%">
                                 <form asp-antiforgery="true" method="post">
-                                    <input type="hidden" name="Login" value="@i.Headline" />
-                                    <input type="submit" class="btn btn-danger" value="Удалить" />
+                                    <input type="hidden" name="Headline" value="@i.Headline" />
+                                    <input type="submit" class="btn btn-danger btn-block" value="Удалить" />
                                 </form>
                             </td>
                         </tr>

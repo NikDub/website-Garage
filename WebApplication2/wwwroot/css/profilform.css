@@ -72,3 +72,42 @@
     grid-column-gap: 20px;
     grid-auto-rows: minmax(300px, auto);
 }
+
+.gtid-addpost {
+    display: grid;
+    grid-template-rows: 35% 55% 20%;
+    grid-column-gap: 20px;
+    grid-auto-columns: minmax(300px, auto, auto);
+}
+
+.c-comment-form__text {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    min-height: 100px;
+    resize: vertical;
+}
+
+.c-textarea {
+    resize: none;
+    border-radius: 3px;
+    border: 1px solid #999;
+    padding: 5px;
+    font-size: 15px;
+    color: #333;
+    background: #fff;
+    box-sizing: border-box;
+    -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    overflow: auto;
+    vertical-align: top;
+    font: 100% sans-serif;
+    margin: 0;
+    box-sizing: border-box;
+    vertical-align: middle;
+}
+
+
+
+
+

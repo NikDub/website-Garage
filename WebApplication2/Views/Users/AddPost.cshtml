@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Добавлени поста";
+}
+
+<h2>Добавление поста</h2>
+
+<div class="gtid-addpost">
+    <div class="profil-bg">
+        <h3 style="margin-bottom:0;margin-top: 0;">Заголовок: </h3>
+        <textarea class="c-textarea c-comment-form__text js-commenttext goog-textarea" name="text"
+                  placeholder="Написать" data-slot="comment-form.text"
+                  style="overflow: auto hidden;box-sizing: border-box;padding-bottom: 5px; height: 50px;"></textarea>
+    </div>
+
+    <div class="profil-bg">
+        <h3 style="margin-bottom:0;margin-top: 0;">Текст поста: </h3>
+        <textarea class="c-textarea c-comment-form__text js-commenttext goog-textarea" name="text" 
+                  placeholder="Написать" data-slot="comment-form.text" 
+                  style="overflow: auto hidden;box-sizing: border-box;padding-bottom: 5px; height: 200px;"></textarea>
+    </div>
+
+    <div class="profil-bg">
+        <div class="btn-danger btn" style="position: absolute;background:green;border-color:darkgreen;left: 91%;">
+            <a style="text-decoration:none;color:white;" href="/users/addpost">Добавить
+            </a>
+        </div>
+    </div>
+</div>

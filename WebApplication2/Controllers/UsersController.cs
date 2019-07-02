@@ -29,11 +29,31 @@ namespace WebApplication2.Controllers
             return View(post);
         }
 
-        public IActionResult Index()
+        public IActionResult AddPost()
         {
+            _AuthorizeUser = HttpContext.User.Claims.Where((x, i) => i == 2).FirstOrDefault().Value;
+            TempData["UserName"] = _AuthorizeUser;
             TempData["LoginInOutHref"] = "/Logining/Logout";
             TempData["LoginInOut"] = "Выход";
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> Profil(string Headline)
+        {
+            Post postDel = await _context.Posts.FirstOrDefaultAsync(u => u.Headline == Headline);
+
+            if (postDel != null)
+            {
+                _context.Posts.Remove(postDel);
+                await _context.SaveChangesAsync();
+            }
+
+            var post =  _context.Posts.Where(p => p.User.Login == _AuthorizeUser).ToList(); 
+
+            return Redirect("/users/profil");
         }
     }
 }
