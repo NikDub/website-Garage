@@ -11,7 +11,6 @@ namespace WebApplication2.Models
         public int User_Id { get; set; }
         public int User_Sub { get; set; }
 
-        public int? UserId { get; set; }
         public User User { get; set; }
     }
 }

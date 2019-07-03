@@ -16,6 +16,8 @@ namespace WebApplication2.Controllers
         {
             _context = context;
         }
+
+        [HttpGet]
         public IActionResult Index()
         {
             HomeHref();
@@ -35,6 +37,7 @@ namespace WebApplication2.Controllers
             return RedirectToAction("postview", "home", new { id=iD} );
         }
 
+        [HttpGet]
         public IActionResult PostView(int id)
         {
             HomeHref();

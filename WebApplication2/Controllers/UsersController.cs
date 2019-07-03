@@ -18,6 +18,7 @@ namespace WebApplication2.Controllers
         {
             _context = context;
         }
+        [HttpGet]
         public IActionResult Profil()
         {
             AddHref();
@@ -26,6 +27,7 @@ namespace WebApplication2.Controllers
             return View(post);
         }
 
+        [HttpGet]
         public IActionResult AddPost()
         {
             AddHref();
@@ -33,6 +35,7 @@ namespace WebApplication2.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult News()
         {
             AddHref();
@@ -45,6 +48,7 @@ namespace WebApplication2.Controllers
             return View(posts);
         }
 
+        [HttpGet]
         public IActionResult Users()
         {
             AddHref();
@@ -57,6 +61,7 @@ namespace WebApplication2.Controllers
         }
 
 
+        [HttpGet]
         public IActionResult UserView(string ID)
         {
             AddHref();
@@ -80,7 +85,6 @@ namespace WebApplication2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> Profil(string Headline)
         {
             Post postDel = await _context.Posts.FirstOrDefaultAsync(u => u.Headline == Headline);
@@ -97,7 +101,6 @@ namespace WebApplication2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> AddPost(PostModel model)
         {
             _AuthorizeUser = HttpContext.User.Claims.Where((x, i) => i == 2).FirstOrDefault().Value;
@@ -110,7 +113,6 @@ namespace WebApplication2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> Users(int Id_sub)
         {
             
@@ -120,7 +122,6 @@ namespace WebApplication2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> News(int iD)
         {
             return RedirectToAction("postview", "users", new { id = iD });
@@ -128,7 +129,6 @@ namespace WebApplication2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, user")]
         public IActionResult PostView(int id)
         {
             AddHref();
@@ -140,7 +140,6 @@ namespace WebApplication2.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> UserView(int Id_sub)
         {
             _AuthorizeUser = HttpContext.User.Claims.Where((x, i) => i == 2).FirstOrDefault().Value;
