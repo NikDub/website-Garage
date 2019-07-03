@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "Пользователи";
+    @model List<WebApplication2.Models.User>;
+}
+
+<h2>Пользователи</h2>
+<div class="gtid-Users">
+    @{ foreach (var i in Model)
+        {
+            <div class="profil-bg" style="width:300px; height:350px;">
+                <p class="profil-head-text">@i.Login</p>
+                <div style="background-image:url(/images/logo_icon.png);" class="User-img" >
+                </div>
+                <div>
+                    <form asp-antiforgery="true" method="post" style="position: relative;top: 215px;">
+                        <input type="hidden" name="Id_sub" value="@i.Id" />
+                        <input type="submit" class="btn btn-block login100-form-btn" value="Просмотреть профиль" />
+                    </form>
+                </div>
+            </div>
+        }
+
+    }
+</div>

@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewData["Title"] = "Лента";
+    @model List<WebApplication2.Models.Post>;
+}
+
+<h2>Лента</h2>
+
+
+@{ foreach (var i in Model)
+    {
+        <div class="profil-bg" style="padding:20px 20px 20px;">
+            <h2> @i.Headline </h2>
+            <p style="text-overflow:ellipsis; overflow: hidden; white-space: nowrap;">
+                @{
+                    if (i.MainText.Length > 100)
+                    {
+                        @i.MainText.Substring(0, 100);
+                    }
+                    else
+                    {
+                        @i.MainText;
+                    }
+                }
+            </p>
+            <form asp-antiforgery="true" method="post">
+                <input type="hidden" name="Id" value="@i.Id" />
+                <input type="submit" class="c-post-preview__more r-button-unstyled" style="font-weight:700; float:right;" value="Читать дальше" />
+            </form>
+        </div>
+    }
+}

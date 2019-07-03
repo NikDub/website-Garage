@@ -20,21 +20,21 @@
 
             <div class="c-top">
                 <div class="c-top__container">
-                    <a class="c-logo" href="/">
+                    <a class="c-logo" href="@TempData["News"]">
                         <span>Garage</span>
                     </a>
                     <div class="c-top__wrapper">
                         <div class="c-top__main-nav" data-slot="sitesearch.nav">
 
                             <div class="c-top-nav">
-                                <a class="c-top-nav__link" href="/">Лента</a>
+                                <a class="c-top-nav__link" href="@TempData["News"]">Лента</a>
                             </div>
                             <div class="c-top-nav">
-                                <a class="c-top-nav__link">Пользователи</a>
+                                <a class="c-top-nav__link" href="@TempData["UserButtonHref"]">@TempData["UserButtonName"]</a>
                             </div>
                         </div>
                         <div class="c-top-nav r-button-unstyled">
-                            <a class="c-top-nav__link"> @TempData["UserName"]</a>
+                            <a class="c-top-nav__link" href="@TempData["UserNameHref"]"> @TempData["UserName"]</a>
                         </div>
                         <div class="c-top-nav r-button-unstyled">
                             <a class="c-top-nav__link" href=" @TempData["LoginInOutHref"]">  @TempData["LoginInOut"]</a>

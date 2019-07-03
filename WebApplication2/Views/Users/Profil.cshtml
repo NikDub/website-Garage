@@ -23,7 +23,18 @@
                     {
                         <tr>
                             <td>@i.Headline</td>
-                            <td>@i.MainText</td>
+                            <td>
+                                @{
+                                    if (i.MainText.Length > 100)
+                                    {
+                                        @i.MainText.Substring(0, 100);
+                                    }
+                                    else
+                                    {
+                                        @i.MainText;
+                                    }
+                                }
+                            </td>
                             
                             <td style="width:10%">
                                 <form asp-antiforgery="true" method="post">

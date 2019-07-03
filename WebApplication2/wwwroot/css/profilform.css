@@ -30,9 +30,9 @@
 .profil-img {
     position: absolute;
     left: 50%;
-    top: 55%;
+    top: 45%;
     width: 80%;
-    height: 70%;
+    height: 60%;
     border-radius:5px;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
@@ -42,7 +42,7 @@
     transition: all 0.4s ease-in-out;
     box-sizing: border-box;
     -webkit-box-sizing: border-box;
-    background:no-repeat;
+    /*background:no-repeat;*/
 }
 
     .profil-img:hover:after {
@@ -59,6 +59,38 @@
         color: white;
     }
 
+.User-img {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    width: 80%;
+    height: 60%;
+    border-radius: 5px;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    transition: all 0.4s ease-in-out;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    /*background: no-repeat;*/
+}
+
+.User-img:hover:after {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    padding: 70px;
+    position: absolute;
+    content: '>';
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.3);
+    color: white;
+}
+
 .profil-head-text{
     font-weight:700;
     font-size:20px;
@@ -71,6 +103,13 @@
     grid-template-columns:26% 73%;
     grid-column-gap: 20px;
     grid-auto-rows: minmax(300px, auto);
+}
+
+.gtid-Users {
+    display: grid;
+    grid-template-columns: 25% 25% 25% 25%;
+    grid-column-gap: 20px;
+    /*grid-auto-rows: minmax(300px, auto);*/
 }
 
 .gtid-addpost {

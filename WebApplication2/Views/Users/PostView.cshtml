@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewData["Title"] = "PostView";
+    @model List<WebApplication2.Models.Post>;
+}
+
+@{ foreach (var i in Model)
+    {
+        <h2>@i.Headline</h2>
+        <p>@i.MainText</p>
+    }
+}

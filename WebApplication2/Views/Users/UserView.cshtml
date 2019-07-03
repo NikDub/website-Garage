@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewData["Title"] = "PostView";
+    @model List<WebApplication2.Models.Post>;
+}
+
+
+
+<div class="gtid-profil">
+    <div class="profil-bg" style="width:300px; height:350px;">
+        <p class="profil-head-text">@TempData["UserProfilName"]</p>
+        <div style="background-image:url(/images/logo_icon.png);" class="profil-img">
+        </div>
+        <div>
+            <form asp-antiforgery="true" method="post" style="position: relative;top: 215px;">
+                <input type="hidden" name="Id_sub" value="@TempData["UserID"]" />
+                <input type="submit" class="btn btn-block login100-form-btn" value="Подписаться" />
+            </form>
+        </div>
+    </div>
+    <div>
+        @{ foreach (var i in Model)
+            {
+                <div class="profil-bg">
+                    <h2>@i.Headline</h2>
+                    <p>@i.MainText</p>
+                </div>
+            }
+        }
+    </div>
+</div>
