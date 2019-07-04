@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NLog;
 using WebApplication2.Models;
 
 namespace WebApplication2.Controllers
@@ -12,9 +13,11 @@ namespace WebApplication2.Controllers
     public class HomeController : Controller
     {
         private DataBaseContext _context;
+        Logger logger;
         public HomeController(DataBaseContext context)
         {
             _context = context;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         [HttpGet]
@@ -22,6 +25,11 @@ namespace WebApplication2.Controllers
         {
             HomeHref();
             List<Post> post = new List<Post>(_context.Posts);
+            if (post == null)
+            {
+                logger.Error("list of publications is empty");
+                return Redirect("/shared/errorpage");
+            }
             return View(post);
         }
 
@@ -42,8 +50,12 @@ namespace WebApplication2.Controllers
         {
             HomeHref();
             Post post = _context.Posts.FirstOrDefault(r => r.Id == id);
-            List<Post> posts = new List<Post>();
-            posts.Add(post);
+            List<Post> posts = new List<Post>{post};
+            if (post == null)
+            {
+                logger.Error("list of publications is empty");
+                return Redirect("/shared/errorpage");
+            }
             return View(posts);
         }
 

@@ -7,15 +7,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebApplication2.Models;
 using System.Linq;
+using NLog;
 
 namespace WebApplication2.Controllers
 {
     public class LoginingController : Controller
     {
         private DataBaseContext _context;
+        Logger logger;
         public LoginingController(DataBaseContext context)
         {
             _context = context;
+            logger = LogManager.GetCurrentClassLogger();
         }
 
         [HttpGet]
@@ -45,16 +48,18 @@ namespace WebApplication2.Controllers
                 User user = await _context.Users
                     .Include(u => u.Role)
                     .FirstOrDefaultAsync(u => u.Login == model.Login && u.Password == model.Password);
+
                 if (user != null)
                 {
                     await Authenticate(user);
-
-                    if (user.RoleId == 1)
-                        return RedirectToAction("Profil", "Users");
-
-                    if (user.RoleId == 2)
-                        return RedirectToAction("Profil", "Users");
+                    switch (user.RoleId)
+                    {
+                        case 1: return RedirectToAction("Profil", "Users");
+                        case 2: return RedirectToAction("Profil", "Users");
+                    }
+         
                 }
+
                 ModelState.AddModelError("", "Некорректные логин и(или) пароль");
             }
             return View(model);
@@ -72,7 +77,7 @@ namespace WebApplication2.Controllers
             User userEmail = await _context.Users.FirstOrDefaultAsync(u => u.Email == model.Email);
             if (userEmail != null)
             {
-                ModelState.AddModelError("Email", "Такая почта уже загестрирована");
+                ModelState.AddModelError("Email", "Такая почта уже зарегистрирована");
             }
 
             if (ModelState.IsValid)
