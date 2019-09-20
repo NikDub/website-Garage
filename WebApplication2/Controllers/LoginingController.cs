@@ -24,18 +24,20 @@ namespace WebApplication2.Controllers
         [HttpGet]
         public IActionResult Login()
         {
-            TempData["News"] = "/";
-            TempData["LoginInOutHref"] = "/Logining/Login";
-            TempData["LoginInOut"] = "Вход";
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("News", "Users");
+            }
             return View();
         }
 
         [HttpGet]
         public IActionResult RegistrationUser()
         {
-            TempData["News"] = "/";
-            TempData["LoginInOutHref"] = "/Logining/Login";
-            TempData["LoginInOut"] = "Вход";
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("News", "Users");
+            }
             return View();
         }
 
@@ -117,9 +119,6 @@ namespace WebApplication2.Controllers
         {
             if (HttpContext.User.Identity.IsAuthenticated)
             {
-                TempData["News"] = "/";
-                TempData["LoginInOutHref"] = "/Logining/Login";
-                TempData["LoginInOut"] = "Вход";
                 return View(new ErrorPageModel { ReturnURL = ReturnUrl });
             }
 

@@ -25,8 +25,7 @@ namespace WebApplication2.Controllers
         [HttpGet]
         public IActionResult Profil()
         {
-            AddHref();
-
+            _AuthorizeUser = HttpContext.User.Claims.Where((x, i) => i == 2).FirstOrDefault().Value;
             var post = _context.Posts.Where(p => p.User.Login == _AuthorizeUser).ToList();
             if (post == null)
             {
@@ -39,15 +38,12 @@ namespace WebApplication2.Controllers
         [HttpGet]
         public IActionResult AddPost()
         {
-            AddHref();
-
             return View();
         }
 
         [HttpGet]
         public IActionResult News()
         {
-            AddHref();
             try {
                 _AuthorizeUser = HttpContext.User.Claims.Where((x, i) => i == 2).FirstOrDefault().Value;
                 var user = _context.Users.SingleOrDefault(r => r.Login == _AuthorizeUser);
@@ -67,7 +63,6 @@ namespace WebApplication2.Controllers
         [HttpGet]
         public IActionResult Users()
         {
-            AddHref();
             try
             {
                 _AuthorizeUser = HttpContext.User.Claims.Where((x, i) => i == 2).FirstOrDefault().Value;
@@ -88,7 +83,6 @@ namespace WebApplication2.Controllers
         [HttpGet]
         public IActionResult UserView(string ID)
         {
-            AddHref();
             try
             {
                 TempData["UserProfilName"] = _context.Users.Where(r => r.Id == Convert.ToInt32(ID)).ToList()[0].Login;
@@ -103,26 +97,13 @@ namespace WebApplication2.Controllers
             }
         }
 
-        public void AddHref()
-        {
-            _AuthorizeUser = HttpContext.User.Claims.Where((x, i) => i == 2).FirstOrDefault().Value;
-            TempData["News"] = "/users/news";
-            TempData["UserButtonHref"] = "/users/users";
-            TempData["UserButtonName"] = "Пользователи";
-            TempData["UserName"] = _AuthorizeUser;
-            TempData["UserNameHref"] = "/users/profil";
-            TempData["LoginInOutHref"] = "/Logining/Logout";
-            TempData["LoginInOut"] = "Выход";
-        }
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Profil(string Headline)
+        public async Task<IActionResult> Profil(string delete)
         {
             try
             {
-                Post postDel = await _context.Posts.FirstOrDefaultAsync(u => u.Headline == Headline);
+                Post postDel = await _context.Posts.FirstOrDefaultAsync(u => u.Headline == delete);
 
                 if (postDel != null)
                 {
@@ -138,7 +119,13 @@ namespace WebApplication2.Controllers
             }
         }
 
+      /*  public async Task<IActionResult> Profil(int edit)
+        {
+            Post PostEdit = await _context.Posts.FirstOrDefaultAsync(u => u.Id == edit);
 
+            return RedirectToAction();
+        }
+        */
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPost(PostModel model)
@@ -171,14 +158,12 @@ namespace WebApplication2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> News(int iD)
         {
-            return RedirectToAction("postview", "users", new { id = iD });
+            return RedirectToAction("PostView", "Users", new { id = iD });
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public IActionResult PostView(int id)
         {
-            AddHref();
             try
             {
                 Post post = _context.Posts.FirstOrDefault(r => r.Id == id);

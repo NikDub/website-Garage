@@ -17,31 +17,53 @@
     <div class="l-body">
         <header class="l-header" data-role="sticky">
 
+            @if (!User.Identity.IsAuthenticated) {
+                <div class="c-top">
+                    <div class="c-top__container">
+                        <a class="c-logo" href="/">
+                            <span>Garage</span>
+                        </a>
+                        <div class="c-top__wrapper">
+                            <div class="c-top__main-nav" data-slot="sitesearch.nav">
 
-            <div class="c-top">
-                <div class="c-top__container">
-                    <a class="c-logo" href="@TempData["News"]">
-                        <span>Garage</span>
-                    </a>
-                    <div class="c-top__wrapper">
-                        <div class="c-top__main-nav" data-slot="sitesearch.nav">
+                                <div class="c-top-nav">
+                                    <a class="c-top-nav__link" href="/">Лента</a>
+                                </div>
+                            </div>
+                            <div class="c-top-nav r-button-unstyled">
+                                <a class="c-top-nav__link" href="/Logining/Login">Вход</a>
+                            </div>
+                            </div>
+                        </div>
+                </div>
+             }
+             else
+             {
+                <div class="c-top">
+                    <div class="c-top__container">
+                        <a class="c-logo" href="/users/news">
+                            <span>Garage</span>
+                        </a>
+                        <div class="c-top__wrapper">
+                            <div class="c-top__main-nav" data-slot="sitesearch.nav">
 
-                            <div class="c-top-nav">
-                                <a class="c-top-nav__link" href="@TempData["News"]">Лента</a>
+                                <div class="c-top-nav">
+                                    <a class="c-top-nav__link" href="/users/news">Лента</a>
+                                </div>
+                                <div class="c-top-nav">
+                                    <a class="c-top-nav__link" href="/users/users">Пользователи</a>
+                                </div>
                             </div>
-                            <div class="c-top-nav">
-                                <a class="c-top-nav__link" href="@TempData["UserButtonHref"]">@TempData["UserButtonName"]</a>
+                            <div class="c-top-nav r-button-unstyled">
+                                <a class="c-top-nav__link" href="/users/profil">@User.Claims.Where(e=>e.Type== "UserName").FirstOrDefault().Value</a>
+                            </div>
+                            <div class="c-top-nav r-button-unstyled">
+                                <a class="c-top-nav__link" href="/Logining/Logout">Выход</a>
+                            </div>
                             </div>
                         </div>
-                        <div class="c-top-nav r-button-unstyled">
-                            <a class="c-top-nav__link" href="@TempData["UserNameHref"]"> @TempData["UserName"]</a>
-                        </div>
-                        <div class="c-top-nav r-button-unstyled">
-                            <a class="c-top-nav__link" href=" @TempData["LoginInOutHref"]">  @TempData["LoginInOut"]</a>
-                        </div>
-                        </div>
-                    </div>
-            </div>
+                </div>
+             }
         </header>
 
 

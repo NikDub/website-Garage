@@ -23,7 +23,11 @@ namespace WebApplication2.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            HomeHref();
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("News", "Users");
+            }
+
             List<Post> post = new List<Post>(_context.Posts);
             if (post == null)
             {
@@ -42,13 +46,16 @@ namespace WebApplication2.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(int iD)
         {
-            return RedirectToAction("postview", "home", new { id=iD} );
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("PostView", "Users", new { id = iD });
+            }
+            return RedirectToAction("PostView", "Home", new { id = iD } );
         }
 
         [HttpGet]
         public IActionResult PostView(int id)
         {
-            HomeHref();
             Post post = _context.Posts.FirstOrDefault(r => r.Id == id);
             List<Post> posts = new List<Post>{post};
             if (post == null)
@@ -59,11 +66,5 @@ namespace WebApplication2.Controllers
             return View(posts);
         }
 
-        public void HomeHref()
-        {
-            TempData["News"] = "/";
-            TempData["LoginInOutHref"] = "/Logining/Login";
-            TempData["LoginInOut"] = "Вход";
-        }
     }
 }

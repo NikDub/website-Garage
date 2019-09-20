@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Лента";
     @model List<WebApplication2.Models.Post>;
 }
@@ -21,7 +20,7 @@
                     {
                         @i.MainText;
                     }
-                }
+                 }
             </p>
             <form asp-antiforgery="true" method="post">
                 <input type="hidden" name="Id" value="@i.Id" />
